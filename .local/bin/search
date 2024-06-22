@@ -1,0 +1,20 @@
+#!/bin/sh
+
+INPUT="$(printf "Pesquisar\nURL" | rofi -dmenu -l 2 -i -p "Escolha uma opção" )"
+query() {
+  SEARCH_QUERY="$(rofi -dmenu -l 0 -p "O que você quer pesquisar?")"
+  [ -z "$SEARCH_QUERY" ] && exit 1
+  xdg-open "https://google.com/search?q=$SEARCH_QUERY"
+}
+
+url() {
+  URL="$(rofi -dmenu -l 0 -p "Digite a URL")"
+  [ -z "$URL" ] && exit 1
+  xdg-open "https://$URL"
+}
+
+case "$INPUT" in
+  "Pesquisar") query;;
+  "URL") url;;
+  *) exit;;
+esac

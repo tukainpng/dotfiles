@@ -1,0 +1,50 @@
+#!/bin/sh
+
+[ -z "$(pidof mpd)" ] && notify-send "MPD não está em execução"
+[ -z "$(pidof mako)" ] && mako &
+[ -z "$(pidof dunst)" ] && dunst &
+makoctl dismiss -a || dunstctl close-all
+
+variables() {
+  COVERART=$( playerctl metadata mpris:artUrl)
+  ESTADO=$(   playerctl status)
+  ATUAL=$(    mpc | head -n1)
+  POSICAO=$(  mpc | head -n2 | tail -n1 | awk '{print $2}')
+  PLAYTIME=$( mpc | head -n2 | tail -n1 | awk '{print $3}')
+  TEMPO=$(    mpc | head -n2 | tail -n1 | awk '{print $3}' | awk -F "/" '{print $2}')
+  LOOP=$(     mpc | tail -n1 | awk '{print $2 " " $3}')
+  SINGLE=$(   mpc | tail -n1 | awk '{print $6 " " $7}')
+}
+
+current() {
+  variables
+  notify-send -i $COVERART "$ATUAL" "$PLAYTIME\n$POSICAO\n\nstate: $ESTADO\n$LOOP\n$SINGLE"
+}
+
+shuffle() {
+  mpc shuffle
+  current
+}
+
+jump() {
+  playerctl -p mpd $1 &&
+  variables
+  notify-send -i $COVERART "$ATUAL" "$POSICAO - $TEMPO"
+}
+
+seek() {
+  playerctl -p mpd position 10$1
+  variables
+  notify-send -i $COVERART "$ATUAL" "$ESTADO - $PLAYTIME"
+}
+
+case "$1" in
+  "current") current;;
+  "shuffle") shuffle;;
+  "play-pause") playerctl -p mpd play-pause; current;;
+  "prev") jump previous;;
+  "next") jump next;;
+  "fwd") seek +;;
+  "bkd") seek -;;
+  *) exit;;
+esac

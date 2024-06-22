@@ -1,0 +1,7 @@
+#!/bin/sh
+
+HOME="/home/$(whoami)"
+EMOJIFILE="$HOME/.local/share/emoji"
+CHOSEN=$(cat $EMOJIFILE | rofi -dmenu -i -p "Escolha o emoji" | awk '{print $1}')
+
+wl-copy $CHOSEN

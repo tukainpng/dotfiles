@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+foot lf -command 'map <enter> walls' ~/.config/sway/wallpapers

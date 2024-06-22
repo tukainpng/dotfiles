@@ -1,0 +1,20 @@
+configuration {
+    modi: "run";
+    lines: 5;
+    font: "JetBrains Mono Nerd Font Bold 14";
+    show-icons: false;
+    terminal: "foot";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: true;
+    sidebar-mode: false;
+    display-drun: "Apps";
+    display-run: "Command";
+    display-window: "Window";
+}
+
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+
+* {
+  scrollbar: false;
+}

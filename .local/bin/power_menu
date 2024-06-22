@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+sair(){
+  if [ $(nag) ]; then
+    swaymsg exit
+  fi
+}
+
+reiniciar(){
+  if [ $(nag) ]; then
+    doas /sbin/reboot
+  fi
+}
+
+desligar(){
+  if [ $(nag) ]; then
+    doas /sbin/poweroff
+  fi
+}
+ESCOLHA="$(printf "Bloquear\nSair\nReiniciar\nDesligar" | rofi -dmenu -l 4 -i -p "Escolha uma opção:")"
+
+case "$ESCOLHA" in
+  Bloquear)  swaylock -e -i ~/.config/sway/wp;;
+  Sair)      sair;;
+  Reiniciar) reiniciar;;
+  Desligar)  desligar;;
+  *) exit;;
+esac

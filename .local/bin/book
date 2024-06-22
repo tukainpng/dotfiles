@@ -1,0 +1,66 @@
+#!/bin/sh
+
+BOOKMARK_FILE="/home/john/.local/share/bookmarks"
+TERMINAL="$(which foot)"
+
+[ ! -f $BOOKMARK_FILE ] && touch $BOOKMARK_FILE
+
+open() {
+  CHOICE=$(cat $BOOKMARK_FILE | rofi -dmenu -i -p "Bookmarks" | \
+    awk -F ">" '{ print $2 }')
+  xdg-open "$CHOICE"
+}
+
+add() {
+  BOOKMARK_NAME=$(rofi -dmenu -l 0 -i -p "Dê o nome da bookmark")
+  BOOKMARK_URL=$(rofi -dmenu -l 0 -i -p "URL da bookmark")
+  if [ "$(grep -i "$BOOKMARK_URL$" $BOOKMARK_FILE)" ]; then
+    notify-send "$BOOKMARK_URL" "Bookmark Já existe"
+    exit 1
+  else
+    echo "$BOOKMARK_NAME>$BOOKMARK_URL" >> $BOOKMARK_FILE
+    notify-send "$BOOKMARK_URL" "Foi adicionado"
+  fi
+}
+
+remove() {
+  DELETE_BOOKMARK=$(cat $BOOKMARK_FILE | rofi -dmenu -i -p "Bookmark para remover")
+  BOOKMARK_TMP=$(md5sum $BOOKMARK_FILE | awk '{ print $1 }')
+  grep -iv "$DELETE_BOOKMARK" $BOOKMARK_FILE > /tmp/$BOOKMARK_TMP
+  mv /tmp/$BOOKMARK_TMP $BOOKMARK_FILE
+  notify-send "$DELETE_BOOKMARK" "Bookmark foi removida"
+}
+
+menu() {
+  case $(printf "Abrir Bookmark\nAdicionar Bookmark\nRemover Bookmark\nEditar arquivo" | \
+    rofi -dmenu -l 4 -i -p "Escolha uma opção") in
+      "Abrir Bookmark") open;;
+      "Adicionar Bookmark") add;;
+      "Remover Bookmark") remove;;
+      "Editar arquivo") $TERMINAL $EDITOR $BOOKMARK_FILE;;
+      *) exit 1;;
+  esac
+}
+
+INPUT="$1"
+case "$INPUT" in
+  "-o") open;;
+  "-a") add;;
+  "-r") remove;;
+  "-m") menu;;
+  "-e") $TERMINAL $EDITOR $BOOKMARK_FILE;;
+  *) cat << EOF
+Bookmarks - Um script posix que gerencia bookmarks
+
+book <opção>
+
+Opções:
+-o          Abrir uma bookmark
+-a          Adicionar uma bookmark
+-r          Remover uma bookmark
+-m          Menu interativo
+-e          Editar o arquivo de bookmarks
+-h          Abrir esta mensagem de ajuda
+
+EOF
+esac
