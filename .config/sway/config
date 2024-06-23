@@ -142,7 +142,7 @@ set $lock swaylock -e -i ~/.config/sway/wp
   bindsym $mod+i exec walls
 
   # rofi-mpd
-  bindsym $mod+c exec rofi-mpd -c
+  bindsym $mod+m exec rofi-mpd -c
 
   # rofi-mount
   bindsym $mod+u exec rofi-mount
@@ -171,7 +171,7 @@ set $lock swaylock -e -i ~/.config/sway/wp
   # Abrir mixer
   bindsym $mod+a exec $term pulsemixer
 
-  # Abrir vis
+  # Abrir cli-visualizer
   bindsym $mod+v exec $term vis
 
   # Screenshot
@@ -184,9 +184,8 @@ set $lock swaylock -e -i ~/.config/sway/wp
   # Newsboat
   bindsym $mod+n exec $term newsboat
 
-  # Neomutt
-  bindsym $mod+m exec $term neomutt
-  bindsym XF86Mail exec $term neomutt
+  # Keepassxc
+  bindsym $mod+s exec keepassxc
 
   # Search
   bindsym $mod+o exec search
