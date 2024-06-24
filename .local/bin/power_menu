@@ -8,13 +8,13 @@ sair(){
 
 reiniciar(){
   if [ $(nag) ]; then
-    doas /sbin/reboot
+    systemctl reboot
   fi
 }
 
 desligar(){
   if [ $(nag) ]; then
-    doas /sbin/poweroff
+    systemctl poweroff
   fi
 }
 ESCOLHA="$(printf "Bloquear\nSair\nReiniciar\nDesligar" | rofi -dmenu -l 4 -i -p "Escolha uma opção:")"
