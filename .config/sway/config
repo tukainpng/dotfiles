@@ -116,10 +116,10 @@ set $lock swaylock -e -i ~/.config/sway/wp
   bindsym XF86AudioRaiseVolume exec audioctl up
   bindsym XF86AudioLowerVolume exec audioctl down
   bindsym XF86AudioMute exec audioctl toggle
-  bindsym XF86MonBrightnessUp exec brightnessctl s 3%+
-  bindsym XF86MonBrightnessDown exec brightnessctl s 3%-
-  bindsym $mod+Prior exec brightnessctl s 3%+
-  bindsym $mod+Next exec brightnessctl s 3%-
+  bindsym XF86MonBrightnessUp exec brictl up
+  bindsym XF86MonBrightnessDown exec brictl down
+  bindsym $mod+Prior exec brictl up
+  bindsym $mod+Next exec brictl down
 
   # Menu
   bindsym $mod+p exec rofi -show run
@@ -221,16 +221,16 @@ set $lock swaylock -e -i ~/.config/sway/wp
 
 ### Workspaces ###
 
-  workspace 1 output    $display1
-  workspace 2 output    $display1
-  workspace 3 output    $display1
-  workspace 4 output    $display1
-  workspace 5 output    $display1
-  workspace 6 output    $display2 $display1
-  workspace 7 output    $display2 $display1
-  workspace 8 output    $display2 $display1
-  workspace 9 output    $display2 $display1
-  workspace 10 output   $display2 $display1
+  workspace 1 output    $display2 $display1
+  workspace 2 output    $display2 $display1
+  workspace 3 output    $display2 $display1
+  workspace 4 output    $display2 $display1
+  workspace 5 output    $display2 $display1
+  workspace 6 output    $display1
+  workspace 7 output    $display1
+  workspace 8 output    $display1
+  workspace 9 output    $display1
+  workspace 10 output   $display1
 
   # Switch to workspace
   bindsym $mod+1 workspace number 1

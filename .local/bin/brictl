@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+INPUT="$1"
+
+up() {
+  NOTIFICATION="$(brightnessctl set 5%+ | head -n 3 | tail -n 1 | awk '{ print $4 }')"
+}
+
+down() {
+  NOTIFICATION="$(brightnessctl set 5%- | head -n 3 | tail -n 1 | awk '{ print $4 }')"
+}
+
+case "$1" in
+  "up") up;;
+  "down") down;;
+esac
+
+makoctl dismiss -a
+notify-send "O brilho está em: $NOTIFICATION"
