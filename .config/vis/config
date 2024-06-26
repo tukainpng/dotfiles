@@ -1,0 +1,12 @@
+visualizer.fps=60
+
+##Currently available ones are "mpd", "pulse", "shmem", and "alsa". Defaults to "pulse".
+audio.sources=pulse
+
+#mpd.fifo.path=/tmp/mpd.fifo
+
+audio.stereo.enabled=false
+
+colors.override.terminal=false
+
+colors.scheme=gruv

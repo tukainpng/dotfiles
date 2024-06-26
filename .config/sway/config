@@ -22,6 +22,7 @@ exec {
   /usr/libexec/pipewire-launcher
   mako
   mpd && mpd-mpris
+  autotiling-rs
 }
 
 ### Configuração da paleta de cores ###
