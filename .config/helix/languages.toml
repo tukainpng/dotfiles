@@ -1,0 +1,28 @@
+use-grammars = { only = [ 
+  "hare",
+  "nasm",
+  "c",
+  "html",
+  "css",
+  "markdown",
+  "yaml",
+  "toml",
+  "dockerfile",
+  "bash",
+  "make",
+  "ini",
+  "rust",
+  "zig",
+  "go",
+  "git-commit",
+  "git-config",
+  "git-rebase"
+  ]}
+
+[[language]]
+name = "hare"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "c"
+indent = { tab-width = 2, unit = "  "}
