@@ -13,8 +13,9 @@ configuration {
     display-window: "Window";
 }
 
-@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+@theme "onedark.rasi"
 
 * {
   scrollbar: false;
 }
+

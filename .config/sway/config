@@ -6,7 +6,7 @@ default_border pixel 2
 smart_borders on
 smart_gaps on
 gaps inner 10
-xwayland enable
+xwayland disable
 
 ### Inicialização ###
 
@@ -22,14 +22,13 @@ exec {
   /usr/libexec/pipewire-launcher
   mako
   mpd && mpd-mpris
-  autotiling-rs
 }
 
 ### Configuração da paleta de cores ###
 
-  set $0 #282828
-  set $1 #98971a
-  set $2 #ebdbb2
+  set $0 #282c34
+  set $1 #98c379
+  set $2 #abb2bf
 
   client.focused           $1  $1  $0  $1  $1
   client.focused_inactive  $0  $0  $2  $0  $0
@@ -165,9 +164,6 @@ set $lock swaylock -e -i ~/.config/sway/wp
 
   # Abrir navegador
   bindsym $mod+w exec $web
-
-  # Abrir navegador (janela anônima)
-  bindsym $mod+alt+w exec qutebrowser --target private-window
 
   # Abrir mixer
   bindsym $mod+a exec $term pulsemixer
