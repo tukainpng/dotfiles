@@ -1,47 +1,34 @@
 #!/bin/sh
 
-[ -z "$(pidof mpd)" ] && notify-send "MPD não está em execução"
 [ -z "$(pidof mako)" ] && mako &
 [ -z "$(pidof dunst)" ] && dunst &
 makoctl dismiss -a || dunstctl close-all
 
 variables() {
-  COVERART=$( playerctl metadata mpris:artUrl)
   ESTADO=$(   playerctl status)
-  ATUAL=$(    mpc | head -n1)
-  POSICAO=$(  mpc | head -n2 | tail -n1 | awk '{print $2}')
-  PLAYTIME=$( mpc | head -n2 | tail -n1 | awk '{print $3}')
-  TEMPO=$(    mpc | head -n2 | tail -n1 | awk '{print $3}' | awk -F "/" '{print $2}')
-  LOOP=$(     mpc | tail -n1 | awk '{print $2 " " $3}')
-  SINGLE=$(   mpc | tail -n1 | awk '{print $6 " " $7}')
+  ATUAL=$(    playerctl metadata xesam:artist; playerctl metadata xesam:album; playerctl metadata xesam:title)
+  POSICAO=$(  playerctl metadata mpris:trackid | awk -F "/" '{ print "position: " $2 }'| tr "\'" " ")
 }
 
 current() {
   variables
-  notify-send -i $COVERART "$ATUAL" "$PLAYTIME\n$POSICAO\n\nstate: $ESTADO\n$LOOP\n$SINGLE"
-}
-
-shuffle() {
-  mpc shuffle
-  current
+  notify-send "$ATUAL" "$POSICAO"
 }
 
 jump() {
-  playerctl -p mpd $1 &&
+  playerctl $1 &&
   variables
-  notify-send -i $COVERART "$ATUAL" "$POSICAO - $TEMPO"
+  notify-send "$ATUAL" "$POSICAO"
 }
 
 seek() {
-  playerctl -p mpd position 10$1
-  variables
-  notify-send -i $COVERART "$ATUAL" "$ESTADO - $PLAYTIME"
+  playerctl position 10$1
 }
 
 case "$1" in
   "current") current;;
-  "shuffle") shuffle;;
-  "play-pause") playerctl -p mpd play-pause; current;;
+  "stop") playerctl stop; current;;
+  "play-pause") playerctl play-pause; current;;
   "prev") jump previous;;
   "next") jump next;;
   "fwd") seek +;;
