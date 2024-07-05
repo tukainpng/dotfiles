@@ -5,20 +5,19 @@
 makoctl dismiss -a || dunstctl close-all
 
 variables() {
-  ESTADO=$(   playerctl status)
-  ATUAL=$(    playerctl metadata xesam:artist; playerctl metadata xesam:album; playerctl metadata xesam:title)
-  POSICAO=$(  playerctl metadata mpris:trackid | awk -F "/" '{ print "position: " $2 }'| tr "\'" " ")
+  ARTIST=$(   sleep 0.3; playerctl metadata xesam:artist)
+  ALBUM=$(    playerctl metadata xesam:album)
+  TITLE=$(    playerctl metadata xesam:title)
 }
 
 current() {
   variables
-  notify-send "$ATUAL" "$POSICAO"
+  notify-send "$ARTIST - $ALBUM" "$TITLE"
 }
 
 jump() {
   playerctl $1 &&
-  variables
-  notify-send "$ATUAL" "$POSICAO"
+  current
 }
 
 seek() {
@@ -27,7 +26,7 @@ seek() {
 
 case "$1" in
   "current") current;;
-  "stop") playerctl stop; current;;
+  "stop") playerctl stop;;
   "play-pause") playerctl play-pause; current;;
   "prev") jump previous;;
   "next") jump next;;
