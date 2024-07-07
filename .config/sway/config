@@ -39,7 +39,8 @@ bar {
   colors {
     statusline $2
     background $0
-    focused_workspace  $0  $1  $0
+    focused_workspace  $1  $1  $0
+    active_workspace   $0  $0  $1
     inactive_workspace $0  $0  $2
   }
 }
