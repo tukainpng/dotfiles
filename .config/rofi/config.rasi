@@ -13,7 +13,7 @@ configuration {
     display-window: "Window";
 }
 
-@theme "onedark.rasi"
+@theme "brogrammer.rasi"
 
 * {
   scrollbar: false;

@@ -1,0 +1,101 @@
+/*
+ * ROFI Brogrammer
+ *
+ * Based on vim-brogrammer-theme (https://github.com/marciomazza/vim-brogrammer-theme)
+ *
+ * Author: Diogo Fernandes
+ * User: tukainpng
+ *
+ */
+
+
+* {
+  black:      #1f1f1f;
+  red:        #f81118;
+  green:      #2dc55e;
+  yellow:     #ecba0f;
+  blue:       #2a84d2;
+  mangenta:   #4e5ab7;
+  purple:     #5350b9;
+  cyan:       #1081d6;
+  emphasis:   #1dd361;
+  text:       #d6dbe5;
+  text-alt:   #ffffff;
+  fg:         #d6dbe5;
+  bg:         #1f1f1f;
+
+  spacing: 0;
+  background-color: transparent;
+
+  font: "JetBrains Mono Nerd Font Bold 14";
+  text-color: @text;
+}
+
+window {
+  transparency: "real";
+  fullscreen: true;
+  background-color: #1f1f1fdd;
+}
+
+mainbox {
+  padding: 30% 30%;
+}
+
+inputbar {
+  margin: 0px 0px 20px 0px;
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+  text-color: @blue;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+  text-color: @text-alt;
+}
+
+entry {
+  margin: 0px 10px;
+}
+
+listview {
+  spacing: 5px;
+  dynamic: true;
+  scrollbar: false;
+}
+
+element {
+  padding: 5px;
+  text-color: @text-alt;
+  highlight: bold #1dd361; /* green */
+  border-radius: 3px;
+}
+
+element selected {
+  background-color: @emphasis;
+  text-color: @text;
+}
+
+element urgent, element selected urgent {
+  text-color: @red;
+}
+
+element active, element selected active {
+  text-color: @purple;
+}
+
+message {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+  border: 1px;
+  border-color: @cyan;
+}
+
+button selected {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+}

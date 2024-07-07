@@ -9,4 +9,4 @@ audio.stereo.enabled=false
 
 colors.override.terminal=false
 
-colors.scheme=gruv
+colors.scheme=green

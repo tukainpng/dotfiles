@@ -1,5 +1,4 @@
 config.load_autoconfig()
-config.source('gruvbox.py')
 
 # Teclas de atalho
 config.bind('<space>p', 'tab-next')

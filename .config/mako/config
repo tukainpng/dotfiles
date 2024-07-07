@@ -1,7 +1,7 @@
 font=jetbrainsmono 10
-background-color=#282c34
-border-color=#98c379FF
-text-color=#abb2bfFF
+background-color=#1f1f1f
+border-color=#2dc55eFF
+text-color=#ffffffff
 border-size=2
 default-timeout=5000
 height=300

@@ -25,9 +25,9 @@ exec {
 
 ### Configuração da paleta de cores ###
 
-  set $0 #282c34
-  set $1 #98c379
-  set $2 #abb2bf
+  set $0 #1f1f1f
+  set $1 #2dc55e
+  set $2 #ffffff
 
   client.focused           $1  $1  $0  $1  $1
   client.focused_inactive  $0  $0  $2  $0  $0
@@ -39,7 +39,7 @@ bar {
   colors {
     statusline $2
     background $0
-    focused_workspace  $0  $0  $1
+    focused_workspace  $0  $1  $0
     inactive_workspace $0  $0  $2
   }
 }
