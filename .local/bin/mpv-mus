@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 [ ! -z "$(pidof mpv)" ] && killall mpv
+[ ! -z "$(pidof vis)" ] && killall vis
 
 CHOICE=$(ls $HOME/mus/*.m3u8 | awk -F "/" '{ print $5 }' | awk -F "." '{ print $1 }' | rofi -dmenu -i -p "Escolha a playlist")
+foot vis &
 mpv --no-terminal "$@" -- "$HOME/mus/$CHOICE.m3u8"
