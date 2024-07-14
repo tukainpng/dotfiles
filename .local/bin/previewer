@@ -15,7 +15,7 @@ case "$(file -Lb --mime-type -- "$1")" in
     exit 1
     ;;
   *)
-    bat -f --style plain --theme gruvbox-dark "$1"
+    bat -f --style plain --theme base16 "$1"
     ;;
 esac
 
