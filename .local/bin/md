@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+FILE=$1
+
+yt-dlp --extract-audio \
+  --audio-quality 0 \
+  --embed-thumbnail \
+  --embed-metadata \
+  --audio-format opus \
+  $FILE

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PROG=$1
+PID=$(pidof $PROG)
+
+kill -9 $PID

@@ -154,8 +154,8 @@ set $lock swaylock -e -i ~/.config/sway/wp
   # Abrir mixer
   bindsym $mod+a exec $term pulsemixer
 
-  # Abrir cli-visualizer
-  bindsym $mod+v exec $term vis
+  # Abrir cava
+  bindsym $mod+v exec cava
 
   # Screenshot
   bindsym Print exec grim

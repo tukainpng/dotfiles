@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
 [ ! -z "$(pidof mpv)" ] && killall mpv
-[ ! -z "$(pidof vis)" ] && killall vis
+[ ! -z "$(pidof cava)" ] && killall cava
+swaymsg layout splitv
 
 case "$(printf 'Songs\nPlaylists' | rofi -i -dmenu -p 'Music')" in
   "Songs")
     CHOICE=$(ls $HOME/mus/src/*.* | awk -F "/" '{ print $6 }' | rofi -dmenu -i -p "Escolha a playlist")
-    foot vis &
-    mpv --no-terminal "$@" -- "$HOME/mus/src/$CHOICE" && killall vis
+    cava &
+    mpv --no-terminal "$@" -- "$HOME/mus/src/$CHOICE" && killall cava
     ;;
   "Playlists")
     CHOICE=$(ls $HOME/mus/*.m3u8 | awk -F "/" '{ print $5 }' | awk -F "." '{ print $1 }' | rofi -dmenu -i -p "Escolha a playlist")
-    foot vis &
-    mpv --no-terminal "$@" -- "$HOME/mus/$CHOICE.m3u8" && killall vis
+    cava &
+    mpv --no-terminal "$@" -- "$HOME/mus/$CHOICE.m3u8" && killall cava
     ;;
   *) exit;;
 esac
